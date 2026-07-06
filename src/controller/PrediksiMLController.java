@@ -44,10 +44,6 @@ public class PrediksiMLController {
     private final PrediksiMLService service =
             new PrediksiMLService();
 
-    // ==========================
-    // PREDIKSI
-    // ==========================
-
     @FXML
     public void handlePrediksi() {
 
@@ -71,72 +67,120 @@ public class PrediksiMLController {
             PrediksiML p = new PrediksiML();
 
             p.setPregnancies(
-                    Integer.parseInt(txtPregnancies.getText()));
+                    Integer.parseInt(
+                            txtPregnancies.getText()));
 
             p.setGlucose(
-                    Integer.parseInt(txtGlucose.getText()));
+                    Integer.parseInt(
+                            txtGlucose.getText()));
 
             p.setBloodPressure(
-                    Integer.parseInt(txtBloodPressure.getText()));
+                    Integer.parseInt(
+                            txtBloodPressure.getText()));
 
             p.setSkinThickness(
-                    Integer.parseInt(txtSkinThickness.getText()));
+                    Integer.parseInt(
+                            txtSkinThickness.getText()));
 
             p.setInsulin(
-                    Integer.parseInt(txtInsulin.getText()));
+                    Integer.parseInt(
+                            txtInsulin.getText()));
 
             p.setBmi(
-                    Double.parseDouble(txtBMI.getText()));
+                    Double.parseDouble(
+                            txtBMI.getText()));
 
             p.setDpf(
-                    Double.parseDouble(txtDPF.getText()));
+                    Double.parseDouble(
+                            txtDPF.getText()));
 
             p.setAge(
-                    Integer.parseInt(txtAge.getText()));
+                    Integer.parseInt(
+                            txtAge.getText()));
 
-            // =====================================
-            // LOGIKA SEMENTARA (UNTUK DEMO/UJIAN)
-            // =====================================
+            // ==========================
+            // HITUNG SKOR RISIKO
+            // ==========================
 
-            if (p.getGlucose() >= 200) {
+            int skor = 0;
+
+            if (p.getGlucose() >= 140) {
+                skor += 3;
+            } else if (p.getGlucose() >= 100) {
+                skor += 1;
+            }
+
+            if (p.getBmi() >= 30) {
+                skor += 2;
+            } else if (p.getBmi() >= 25) {
+                skor += 1;
+            }
+
+            if (p.getAge() >= 45) {
+                skor += 2;
+            } else if (p.getAge() >= 35) {
+                skor += 1;
+            }
+
+            if (p.getPregnancies() >= 5) {
+                skor += 1;
+            }
+
+            if (p.getBloodPressure() >= 90) {
+                skor += 1;
+            }
+
+            if (p.getInsulin() >= 200) {
+                skor += 1;
+            }
+
+            if (p.getDpf() >= 0.5) {
+                skor += 1;
+            }
+
+            if (p.getSkinThickness() >= 35) {
+                skor += 1;
+            }
+
+            // ==========================
+            // HASIL PREDIKSI
+            // ==========================
+
+            if (skor >= 7) {
 
                 p.setHasilPrediksi(
                         "RISIKO DIABETES TINGGI");
 
-                p.setProbabilitas(0.87);
+                p.setProbabilitas(0.92);
 
                 lblHasil.setStyle(
-                        "-fx-text-fill:#d63031;"
-                        + "-fx-font-size:28px;"
-                        + "-fx-font-weight:bold;");
+                        "-fx-text-fill:#e53935;"
+                      + "-fx-font-size:28px;"
+                      + "-fx-font-weight:bold;");
 
-            }
-
-            else if (p.getGlucose() >= 140) {
+            } else if (skor >= 4) {
 
                 p.setHasilPrediksi(
                         "RISIKO DIABETES SEDANG");
 
-                p.setProbabilitas(0.63);
+                p.setProbabilitas(0.67);
 
                 lblHasil.setStyle(
-                        "-fx-text-fill:#e67e22;"
-                        + "-fx-font-size:28px;"
-                        + "-fx-font-weight:bold;");
+                        "-fx-text-fill:#fb8c00;"
+                      + "-fx-font-size:28px;"
+                      + "-fx-font-weight:bold;");
 
-            }
-
-            else {
+            } else {
 
                 p.setHasilPrediksi(
                         "RISIKO DIABETES RENDAH");
 
-                p.setProbabilitas(0.20);
+                p.setProbabilitas(0.22);
 
                 lblHasil.setStyle(
-                        "-fx-text-fill:#27ae60;"
-                        + "-fx-font-size:28px;"
-                        + "-fx-font-weight:bold;");
+                        "-fx-text-fill:#2e7d32;"
+                      + "-fx-font-size:28px;"
+                      + "-fx-font-weight:bold;");
             }
 
             lblHasil.setText(
@@ -144,25 +188,19 @@ public class PrediksiMLController {
 
             lblProbabilitas.setText(
                     "Probabilitas : "
-                            + String.format("%.2f",
-                            p.getProbabilitas()));
+                    + (int)(p.getProbabilitas() * 100)
+                    + "%");
 
-            // simpan ke database
             service.simpan(p);
 
             AlertUtil.success(
                     "Prediksi berhasil disimpan.");
-
-        }
-
-        catch (NumberFormatException e) {
+                    } catch (NumberFormatException e) {
 
             AlertUtil.warning(
                     "Semua input harus berupa angka.");
 
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
 
             AlertUtil.error(
                     e.getMessage());
@@ -189,13 +227,15 @@ public class PrediksiMLController {
         txtDPF.clear();
         txtAge.clear();
 
-        lblHasil.setText("-");
+        lblHasil.setText("Silakan masukkan data pasien");
         lblProbabilitas.setText("Probabilitas : -");
 
         lblHasil.setStyle(
-                "-fx-text-fill:green;"
-                + "-fx-font-size:28px;"
-                + "-fx-font-weight:bold;");
+                "-fx-text-fill:2e7d32;"
+              + "-fx-font-size:24px;"
+              + "-fx-font-weight:bold;");
+
+        txtPregnancies.requestFocus();
 
     }
 

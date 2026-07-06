@@ -807,3 +807,55 @@
 
     -fx-text-fill:#475569;
 }
+
+/* LOGIN */
+
+.login-card{
+
+    -fx-background-color:white;
+
+    -fx-background-radius:20;
+
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(0,0,0,0.18),
+        25,
+        0,
+        0,
+        5
+    );
+}
+
+.login-title{
+
+    -fx-font-size:32px;
+
+    -fx-font-weight:bold;
+
+    -fx-text-fill:#1e3a8a;
+}
+
+.login-subtitle{
+
+    -fx-font-size:14px;
+
+    -fx-text-fill:#64748b;
+}
+
+.login-field{
+
+    -fx-background-radius:15;
+
+    -fx-border-radius:15;
+
+    -fx-border-color:#cbd5e1;
+
+    -fx-padding:10;
+
+    -fx-font-size:14px;
+}
+
+.login-field:focused{
+
+    -fx-border-color:#2563eb;
+}

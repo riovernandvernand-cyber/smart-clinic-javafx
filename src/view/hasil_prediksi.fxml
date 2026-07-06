@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.HasilPrediksiController">
+
+    <top>
+
+        <VBox alignment="CENTER"
+              spacing="10">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="20"
+                        left="20"/>
+            </padding>
+
+            <Label text="HASIL &amp; RIWAYAT PREDIKSI"
+                   style="-fx-font-size:28px;
+                          -fx-font-weight:bold;"/>
+
+            <Label text="Riwayat hasil prediksi diabetes pasien."/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+    <VBox spacing="20">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- Search -->
+        <HBox spacing="10"
+              alignment="CENTER_LEFT">
+
+            <Label text="Cari :"
+                   style="-fx-font-size:14px;
+                          -fx-font-weight:bold;"/>
+
+            <TextField fx:id="txtCari"
+                       promptText="Cari berdasarkan hasil, umur, atau glucose..."
+                       prefWidth="350"/>
+
+        </HBox>
+
+        <!-- Table -->
+        <TableView fx:id="tablePrediksi"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+
+                <TableColumn fx:id="colId"
+                             text="ID"
+                             prefWidth="70"/>
+
+                <TableColumn fx:id="colGlucose"
+                             text="Glucose"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="colBMI"
+                             text="BMI"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="colAge"
+                             text="Umur"
+                             prefWidth="100"/>
+
+                <TableColumn fx:id="colHasil"
+                             text="Hasil Prediksi"
+                             prefWidth="300"/>
+
+                <TableColumn fx:id="colProbabilitas"
+                             text="Probabilitas"
+                             prefWidth="150"/>
+
+            </columns>
+
+        </TableView>
+
+        <!-- Button -->
+        <HBox alignment="CENTER_RIGHT"
+              spacing="15">
+
+            <Button text="Refresh"
+                    onAction="#handleRefresh"/>
+
+            <Button text="Tutup"
+                    onAction="#handleClose"/>
+
+        </HBox>
+
+    </VBox>
+
+</center>
+
+</BorderPane>

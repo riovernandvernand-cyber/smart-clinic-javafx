@@ -7,35 +7,51 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SceneUtil {
-        // =========================
-        // CREATE MODAL
-        // =========================
-        public static Stage createModal(
-                FXMLLoader loader,
-                String title,
-                double width,
-                double height)
-                throws Exception {
 
-        Parent root =
-                loader.load();
+    // =========================
+    // CREATE SCENE + GLOBAL CSS
+    // =========================
+    private static Scene createScene(Parent root) {
 
-        Stage stage =
-                new Stage();
+        Scene scene = new Scene(root);
+
+        scene.getStylesheets().add(
+                SceneUtil.class
+                        .getResource("/style/global.css")
+                        .toExternalForm());
+
+        return scene;
+    }
+
+    // =========================
+    // CREATE MODAL
+    // =========================
+    public static Stage createModal(
+            FXMLLoader loader,
+            String title,
+            double width,
+            double height) throws Exception {
+
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
 
         stage.setTitle(title);
 
-        stage.setScene(
-                new Scene(
-                        root,
-                        width,
-                        height));
+        Scene scene = new Scene(root, width, height);
 
-        stage.initModality(
-                Modality.APPLICATION_MODAL);
+        scene.getStylesheets().add(
+                SceneUtil.class
+                        .getResource("/style/global.css")
+                        .toExternalForm());
+
+        stage.setScene(scene);
+
+        stage.initModality(Modality.APPLICATION_MODAL);
 
         return stage;
-        }
+    }
+
     // =========================
     // OPEN MODAL
     // =========================
@@ -47,29 +63,23 @@ public class SceneUtil {
 
             FXMLLoader loader =
                     new FXMLLoader(
-                            SceneUtil.class
-                                    .getResource(fxml));
+                            SceneUtil.class.getResource(fxml));
 
-            Parent root =
-                    loader.load();
+            Parent root = loader.load();
 
-            Stage stage =
-                    new Stage();
+            Stage stage = new Stage();
 
             stage.setTitle(title);
 
-            stage.setScene(
-                    new Scene(root));
+            stage.setScene(createScene(root));
 
-            stage.initModality(
-                    Modality.APPLICATION_MODAL);
+            stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.showAndWait();
 
         } catch (Exception e) {
 
-            AlertUtil.error(
-                    "Gagal membuka form");
+            AlertUtil.error("Gagal membuka form");
 
             e.printStackTrace();
         }
@@ -86,108 +96,97 @@ public class SceneUtil {
 
             FXMLLoader loader =
                     new FXMLLoader(
-                            SceneUtil.class
-                                    .getResource(fxml));
+                            SceneUtil.class.getResource(fxml));
 
-            Parent root =
-                    loader.load();
+            Parent root = loader.load();
 
-            Stage stage =
-                    new Stage();
+            Stage stage = new Stage();
 
             stage.setTitle(title);
 
-            stage.setScene(
-                    new Scene(root));
+            stage.setScene(createScene(root));
 
             stage.show();
 
         } catch (Exception e) {
 
-            AlertUtil.error(
-                    "Gagal membuka halaman");
+            AlertUtil.error("Gagal membuka halaman");
 
             e.printStackTrace();
         }
     }
-public static FXMLLoader openModalWithLoader(
-        String fxml,
-        String title) {
 
-    try {
+    // =========================
+    // OPEN MODAL + RETURN LOADER
+    // =========================
+    public static FXMLLoader openModalWithLoader(
+            String fxml,
+            String title) {
 
-        FXMLLoader loader =
-                new FXMLLoader(
-                        SceneUtil.class
-                                .getResource(fxml));
+        try {
 
-        Parent root =
-                loader.load();
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            SceneUtil.class.getResource(fxml));
 
-        Stage stage =
-                new Stage();
+            Parent root = loader.load();
 
-        stage.setTitle(title);
+            Stage stage = new Stage();
 
-        stage.setScene(
-                new Scene(root));
+            stage.setTitle(title);
 
-        stage.initModality(
-                Modality.APPLICATION_MODAL);
+            stage.setScene(createScene(root));
 
-        stage.showAndWait();
+            stage.initModality(Modality.APPLICATION_MODAL);
 
-        return loader;
+            stage.showAndWait();
 
-    } catch (Exception e) {
+            return loader;
 
-        AlertUtil.error(
-                "Gagal membuka form");
+        } catch (Exception e) {
 
-        e.printStackTrace();
+            AlertUtil.error("Gagal membuka form");
 
-        return null;
+            e.printStackTrace();
+
+            return null;
+        }
     }
-}
-// =========================
-// OPEN MAXIMIZED WINDOW
-// =========================
-public static void openMaximizedWindow(
-        String fxml,
-        String title) {
 
-    try {
+    // =========================
+    // OPEN MAXIMIZED WINDOW
+    // =========================
+    public static void openMaximizedWindow(
+            String fxml,
+            String title) {
 
-        FXMLLoader loader =
-                new FXMLLoader(
-                        SceneUtil.class
-                                .getResource(fxml));
+        try {
 
-        Parent root =
-                loader.load();
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            SceneUtil.class.getResource(fxml));
 
-        Stage stage =
-                new Stage();
+            Parent root = loader.load();
 
-        stage.setTitle(title);
+            Stage stage = new Stage();
 
-        stage.setScene(
-                new Scene(root));
+            stage.setTitle(title);
 
-        stage.setMaximized(true);
+            stage.setScene(createScene(root));
 
-        stage.show();
+            stage.setMaximized(true);
 
-    } catch (Exception e) {
+            stage.show();
 
-    e.printStackTrace();
+        } catch (Exception e) {
 
-    AlertUtil.error(
-        e.getClass().getSimpleName()
-        + "\n\n"
-        + e.getMessage()
-    );
-}
-}
-    
+            e.printStackTrace();
+
+            AlertUtil.error(
+                    e.getClass().getSimpleName()
+                            + "\n\n"
+                            + e.getMessage());
+        }
+    }
+
 }

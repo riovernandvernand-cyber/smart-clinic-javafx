@@ -102,16 +102,22 @@
             <Label fx:id="lblLaporan" text="LAPORAN"
                 styleClass="menu-group"/>
 
-            <Button text="📊  Hasil&amp;Riwayat"
-                    styleClass="menu-btn"/>
+            <Button fx:id="btnHasil"
+                    text="📊  Hasil&amp;Riwayat"
+                    styleClass="menu-btn"
+                    onAction="#openHasil"/>
 
-            <Button text="📈  Laporan Klinik"
-                    styleClass="menu-btn"/>
+            <Button fx:id="btnLaporan" 
+                    text="📈  Laporan Klinik"
+                    styleClass="menu-btn"
+                    onAction="#openLaporan"/>
                     
             <Region VBox.vgrow="ALWAYS"/>
 
-            <Button text="🚪 Logout"
-                    styleClass="logout-btn"/>
+            <Button fx:id="btnLogout"
+                    text="🚪 Logout"
+                    styleClass="logout-btn"
+                    onAction="#logout"/>
 
         </VBox>
 
@@ -122,130 +128,153 @@
     <!-- TOP -->
     <top>
 
-        <HBox alignment="CENTER_LEFT"
-              spacing="20"
-              styleClass="topbar">
+    <HBox alignment="CENTER_LEFT"
+          spacing="20"
+          styleClass="topbar">
 
-            <VBox spacing="5">
+        <VBox spacing="5">
 
-                <Label text="Dashboard"
-                       styleClass="dashboard-title"/>
+            <Label text="Dashboard"
+                   styleClass="dashboard-title"/>
 
-                <Label text="Selamat Datang di Smart Clinic System"
-                       styleClass="dashboard-subtitle"/>
+            <Label text="Selamat Datang di Smart Clinic System"
+                   styleClass="dashboard-subtitle"/>
 
-            </VBox>
+        </VBox>
 
-            <Region HBox.hgrow="ALWAYS"/>
+        <Region HBox.hgrow="ALWAYS"/>
 
-            <TextField promptText="Cari data pasien..."
-                       prefWidth="250"
-                       styleClass="search-box"/>
+        <TextField fx:id="txtCariDashboard"
+                   promptText="Cari ID, Nama, Umur, Gender, atau Alamat..."
+                   prefWidth="360"
+                   styleClass="search-box"/>
 
-        </HBox>
+    </HBox>
 
-    </top>
+</top>
 
     <!-- CENTER -->
     <center>
 
-        <VBox spacing="25">
-               <padding>
-                <Insets top="25" right="25" bottom="25" left="25"/>
-                </padding>
+    <VBox spacing="25"
+          VBox.vgrow="ALWAYS">
 
-            <!-- STATISTIC CARD -->
-            <HBox spacing="20">
+        <padding>
+            <Insets top="25"
+                    right="25"
+                    bottom="25"
+                    left="25"/>
+        </padding>
 
-                <VBox spacing="10"
-                      prefWidth="250"
-                      prefHeight="120"
-                      styleClass="card-blue">
+        <!-- =========================
+             CARD STATISTIK
+        ========================== -->
 
-                    <Label text="👨‍⚕ Total Pasien"
-                           styleClass="card-title"/>
+        <HBox spacing="20"
+              alignment="CENTER">
 
-                    <Label text="245"
-                           styleClass="card-value"/>
+            <VBox HBox.hgrow="ALWAYS"
+                  spacing="10"
+                  prefHeight="120"
+                  styleClass="card-blue">
 
-                </VBox>
+                <Label text="👨‍⚕ Total Pasien"
+                       styleClass="card-title"/>
 
-                <VBox spacing="10"
-                      prefWidth="250"
-                      prefHeight="120"
-                      styleClass="card-green">
-
-                    <Label text="📋 Rekam Medis"
-                           styleClass="card-title"/>
-
-                    <Label text="1,240"
-                           styleClass="card-value"/>
-
-                </VBox>
-
-                <VBox spacing="10"
-                      prefWidth="250"
-                      prefHeight="120"
-                      styleClass="card-orange">
-
-                    <Label text="🧠 Prediksi"
-                           styleClass="card-title"/>
-
-                    <Label text="532"
-                           styleClass="card-value"/>
-
-                </VBox>
-
-                <VBox spacing="10"
-                      prefWidth="250"
-                      prefHeight="120"
-                      styleClass="card-red">
-
-                    <Label text="💊 Obat"
-                           styleClass="card-title"/>
-
-                    <Label text="85"
-                           styleClass="card-value"/>
-
-                </VBox>
-
-            </HBox>
-
-            <!-- TABLE SECTION -->
-            <VBox spacing="15"
-                  styleClass="table-container">
-
-                <Label text="Data Pasien Terbaru"
-                       styleClass="section-title"/>
-
-                <TableView fx:id="tableDashboard"
-                           prefHeight="500">
-
-                    <columns>
-
-                        <TableColumn text="ID"
-                                     prefWidth="80"/>
-
-                        <TableColumn text="Nama"
-                                     prefWidth="220"/>
-
-                        <TableColumn text="Umur"
-                                     prefWidth="120"/>
-
-                        <TableColumn text="Gender"
-                                     prefWidth="180"/>
-
-                        <TableColumn text="Alamat"
-                                     prefWidth="300"/>
-
-                    </columns>
-
-                </TableView>
+                <Label fx:id="lblTotalPasien"
+                       text="0"
+                       styleClass="card-value"/>
 
             </VBox>
 
+            <VBox HBox.hgrow="ALWAYS"
+                  spacing="10"
+                  prefHeight="120"
+                  styleClass="card-green">
+
+                <Label text="📋 Rekam Medis"
+                       styleClass="card-title"/>
+
+                <Label fx:id="lblTotalRekam"
+                       text="0"
+                       styleClass="card-value"/>
+
+            </VBox>
+
+            <VBox HBox.hgrow="ALWAYS"
+                  spacing="10"
+                  prefHeight="120"
+                  styleClass="card-orange">
+
+                <Label text="🧠 Total Prediksi"
+                       styleClass="card-title"/>
+
+                <Label fx:id="lblTotalPrediksi"
+                       text="0"
+                       styleClass="card-value"/>
+
+            </VBox>
+
+            <VBox HBox.hgrow="ALWAYS"
+                  spacing="10"
+                  prefHeight="120"
+                  styleClass="card-red">
+
+                <Label text="💊 Total Obat"
+                       styleClass="card-title"/>
+
+                <Label fx:id="lblTotalObat"
+                       text="0"
+                       styleClass="card-value"/>
+
+            </VBox>
+
+        </HBox>
+
+        <!-- =========================
+             DATA PASIEN
+        ========================== -->
+
+        <VBox spacing="15"
+              VBox.vgrow="ALWAYS"
+              styleClass="table-container">
+
+            <Label text="Data Pasien Terbaru"
+                   styleClass="section-title"/>
+
+            <TableView fx:id="tableDashboard"
+                       VBox.vgrow="ALWAYS">
+
+                <placeholder>
+
+                    <Label text="Belum ada data pasien."/>
+
+                </placeholder>
+
+                <columns>
+
+                    <TableColumn fx:id="colId"
+                                 text="ID Pasien"/>
+
+                    <TableColumn fx:id="colNama"
+                                 text="Nama"/>
+
+                    <TableColumn fx:id="colUmur"
+                                 text="Umur"/>
+
+                    <TableColumn fx:id="colGender"
+                                 text="Jenis Kelamin"/>
+
+                    <TableColumn fx:id="colAlamat"
+                                 text="Alamat"/>
+
+                </columns>
+
+            </TableView>
+
         </VBox>
 
-    </center>
+    </VBox>
 
+</center>
 </BorderPane>

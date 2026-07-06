@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.LoginController"
+           style="-fx-background-color: linear-gradient(to bottom right,#2563eb,#1e3a8a);">
+
+    <VBox alignment="CENTER"
+          spacing="18"
+          maxWidth="420"
+          maxHeight="560"
+          style="-fx-background-color:white;
+                 -fx-background-radius:25;
+                 -fx-padding:40;">
+
+        <Label text="🏥"
+               style="-fx-font-size:50;"/>
+
+        <Label text="SMART CLINIC"
+               style="-fx-font-size:30;
+                      -fx-font-weight:bold;
+                      -fx-text-fill:#1e3a8a;"/>
+
+        <Label text="Sistem Manajemen Klinik"
+               style="-fx-font-size:14;
+                      -fx-text-fill:#64748b;"/>
+
+        <VBox spacing="8">
+
+            <Label text="Username"
+                   style="-fx-font-weight:bold;"/>
+
+            <TextField fx:id="txtUsername"
+                       promptText="Masukkan Username"
+                       prefHeight="42"/>
+
+        </VBox>
+
+        <VBox spacing="8">
+
+            <Label text="Password"
+                   style="-fx-font-weight:bold;"/>
+
+            <PasswordField fx:id="txtPassword"
+                           promptText="Masukkan Password"
+                           prefHeight="42"/>
+
+        </VBox>
+
+        <Button text="🔒 Masuk"
+                prefWidth="300"
+                prefHeight="45"
+                onAction="#handleLogin"
+                style="-fx-background-color:#2563eb;
+                       -fx-text-fill:white;
+                       -fx-font-size:15;
+                       -fx-font-weight:bold;
+                       -fx-background-radius:30;"/>
+
+        <Label text="© Smart Clinic - Tugas Akhir PBO"
+               style="-fx-font-size:11;
+                      -fx-text-fill:gray;"/>
+
+    </VBox>
+
+</StackPane>

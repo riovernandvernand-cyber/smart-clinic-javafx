@@ -102,42 +102,93 @@ public class PasienDAO {
     // SEARCH
     public ObservableList<Pasien> searchPasien(String keyword){
 
-        ObservableList<Pasien> list =
-                FXCollections.observableArrayList();
+    ObservableList<Pasien> list =
+            FXCollections.observableArrayList();
 
-        try{
+    try{
 
-            String sql =
-                    "SELECT * FROM pasien WHERE nama LIKE ?";
+        String sql = """
+            SELECT * FROM pasien
+            WHERE
+                CAST(id_pasien AS CHAR) LIKE ?
+                OR nama LIKE ?
+                OR CAST(umur AS CHAR) LIKE ?
+                OR gender LIKE ?
+                OR alamat LIKE ?
+            """;
 
-            PreparedStatement ps =
-                    conn.prepareStatement(sql);
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
 
-            ps.setString(1, "%" + keyword + "%");
-
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()){
-
-                list.add(
-                        new Pasien(
-                                rs.getInt("id_pasien"),
-                                rs.getString("nama"),
-                                rs.getInt("umur"),
-                                rs.getString("gender"),
-                                rs.getString("alamat"),
-                                rs.getString("no_hp"),
-                                rs.getDouble("tekanan_darah"),
-                                rs.getDouble("gula_darah")
-                        )
-                );
-            }
-
-        }catch(Exception e){
-
-            e.printStackTrace();
+        for(int i = 1; i <= 5; i++){
+            ps.setString(i, "%" + keyword + "%");
         }
 
-        return list;
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            list.add(new Pasien(
+                    rs.getInt("id_pasien"),
+                    rs.getString("nama"),
+                    rs.getInt("umur"),
+                    rs.getString("gender"),
+                    rs.getString("alamat"),
+                    rs.getString("no_hp"),
+                    rs.getDouble("tekanan_darah"),
+                    rs.getDouble("gula_darah")
+            ));
+
+        }
+
+    }catch(Exception e){
+        e.printStackTrace();
     }
+
+    return list;
+}
+    
+    // ==========================
+    // 5 PASIEN TERBARU
+    // ==========================
+
+    public ObservableList<Pasien> getLatestPasien() {
+
+    ObservableList<Pasien> list =
+            FXCollections.observableArrayList();
+
+    try {
+
+        String sql =
+                "SELECT * FROM pasien ORDER BY id_pasien DESC LIMIT 5";
+
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            list.add(new Pasien(
+                    rs.getInt("id_pasien"),
+                    rs.getString("nama"),
+                    rs.getInt("umur"),
+                    rs.getString("gender"),
+                    rs.getString("alamat"),
+                    rs.getString("no_hp"),
+                    rs.getDouble("tekanan_darah"),
+                    rs.getDouble("gula_darah")
+            ));
+
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return list;
+
+}
 }
