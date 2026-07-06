@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.PemeriksaanController"
+            stylesheets="@style.css">
+
+    <top>
+        <VBox spacing="10" styleClass="top-panel">
+
+            <Label text="DATA PEMERIKSAAN"
+                   styleClass="title"
+                   alignment="CENTER"
+                   maxWidth="Infinity"/>
+
+            <HBox spacing="15"
+                  alignment="CENTER">
+
+                <Button text="➕"
+                 onAction="#handleTambah"
+                styleClass="btn-tambah"/>
+
+                <Button text="✏"
+                onAction="#handleEdit"
+                styleClass="btn-edit"/>
+
+                <Button text="🗑"
+                onAction="#handleHapus"
+                styleClass="btn-hapus"/>
+
+                <Button text="🔄"
+                onAction="#loadData"
+                styleClass="btn-refresh"/>
+
+                <TextField fx:id="txtCari"
+                promptText="Cari pemeriksaan..."
+                prefWidth="180"/>
+
+                <Button text="🔍"
+                onAction="#handleCari"
+                styleClass="btn-cari"/>
+
+                <Button text="❌"
+                onAction="#handleClose"
+                styleClass="btn-close"/>
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <center>
+
+        <TableView fx:id="tablePemeriksaan">
+
+            <columns>
+
+                <TableColumn fx:id="colId"
+                 text="ID"/>
+
+                <TableColumn fx:id="colPasien"
+                 text="Pasien"/>
+
+                <TableColumn fx:id="colTanggal"
+                 text="Tanggal"/>
+
+                <TableColumn fx:id="colDiagnosa"
+                 text="Diagnosa"/>
+
+                <TableColumn fx:id="colGula"
+                 text="Gula Darah"/>
+
+                <TableColumn fx:id="colPrediksi"
+                 text="Prediksi"/>
+
+                <TableColumn fx:id="colRisiko"
+                 text="Risiko"/>
+
+                <TableColumn fx:id="colCatatan"
+                text="Catatan Dokter"/>
+
+            </columns>
+
+        </TableView>
+
+    </center>
+
+</BorderPane>

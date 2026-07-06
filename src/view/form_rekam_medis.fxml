@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.FormRekamMedisController"
+            stylesheets="@style.css">
+
+    <!-- ================= HEADER ================= -->
+
+    <top>
+
+        <VBox alignment="CENTER"
+              spacing="15"
+              styleClass="top-panel">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="10"
+                        left="20"/>
+            </padding>
+
+            <Label text="FORM REKAM MEDIS"
+                   styleClass="title"/>
+
+        </VBox>
+
+    </top>
+
+    <!-- ================= CONTENT ================= -->
+
+    <center>
+
+        <VBox spacing="20">
+
+            <padding>
+                <Insets top="20"
+                        right="25"
+                        bottom="20"
+                        left="25"/>
+            </padding>
+
+            <!-- CARD -->
+
+            <VBox spacing="20"
+                  styleClass="card"
+                  VBox.vgrow="ALWAYS">
+
+                <padding>
+                    <Insets top="20"
+                            right="20"
+                            bottom="20"
+                            left="20"/>
+                </padding>
+
+                <Label text="Data Rekam Medis"
+                       styleClass="subtitle"/>
+
+                <GridPane hgap="20"
+                          vgap="18">
+
+                    <columnConstraints>
+
+                        <ColumnConstraints minWidth="170"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+
+                    </columnConstraints>
+
+                    <!-- ID -->
+
+                    <Label text="ID Rekam"/>
+
+                    <TextField fx:id="txtId"
+                               editable="false"
+                               prefWidth="500"
+                               GridPane.columnIndex="1"/>
+
+                    <!-- Tanggal -->
+
+                    <Label text="Tanggal Rekam"
+                           GridPane.rowIndex="1"/>
+
+                    <DatePicker fx:id="dpTanggal"
+                                prefWidth="500"
+                                GridPane.columnIndex="1"
+                                GridPane.rowIndex="1"/>
+
+                    <!-- Pemeriksaan -->
+
+                    <Label text="Pilih Pemeriksaan"
+                           GridPane.rowIndex="2"/>
+
+                    <ComboBox fx:id="cbPemeriksaan"
+                              prefWidth="500"
+                              GridPane.columnIndex="1"
+                              GridPane.rowIndex="2"/>
+
+                    <!-- Ringkasan -->
+
+                    <Label text="Ringkasan Rekam Medis"
+                           GridPane.rowIndex="3"/>
+
+                    <TextArea fx:id="txtRingkasan"
+                              prefWidth="500"
+                              prefHeight="180"
+                              wrapText="true"
+                              GridPane.columnIndex="1"
+                              GridPane.rowIndex="3"/>
+
+                </GridPane>
+
+                <!-- BUTTON -->
+
+                <HBox alignment="CENTER"
+                      spacing="20">
+
+                    <Button fx:id="btnSimpan"
+                            text="💾 Simpan"
+                            onAction="#handleSimpan"
+                            prefWidth="150"
+                            prefHeight="40"
+                            styleClass="btn-save-modern"/>
+
+                    <Button text="✖ Batal"
+                            onAction="#handleBatal"
+                            prefWidth="150"
+                            prefHeight="40"
+                            styleClass="btn-cancel-modern"/>
+
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

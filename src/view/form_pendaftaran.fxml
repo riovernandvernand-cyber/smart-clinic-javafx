@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.FormPendaftaranController"
+            stylesheets="@style.css">
+
+    <top>
+        <VBox alignment="CENTER"
+              spacing="15"
+              styleClass="top-panel">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="10"
+                        left="20"/>
+            </padding>
+
+            <Label text="FORM PENDAFTARAN"
+                   styleClass="title"/>
+
+        </VBox>
+    </top>
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="25">
+
+            <padding>
+                <Insets top="10"
+                        right="30"
+                        bottom="20"
+                        left="30"/>
+            </padding>
+
+            <GridPane alignment="CENTER"
+                      hgap="20"
+                      vgap="18">
+
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="250"/>
+                </columnConstraints>
+
+                <Label text="ID"/>
+                <TextField fx:id="txtId"
+                           editable="false"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Tanggal"
+                       GridPane.rowIndex="1"/>
+                <DatePicker fx:id="dpTanggal"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="1"/>
+
+                <Label text="Pasien"
+                       GridPane.rowIndex="2"/>
+                <ComboBox fx:id="cbPasien"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <Label text="Dokter"
+                       GridPane.rowIndex="3"/>
+                <ComboBox fx:id="cbDokter"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
+
+                <Label text="Keluhan"
+                       GridPane.rowIndex="4"/>
+                <TextArea fx:id="txtKeluhan"
+                          prefRowCount="3"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="4"/>
+
+            </GridPane>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+
+                <Button text="💾 Simpan"
+                onAction="#handleSimpan"
+                styleClass="btn-success"
+                prefWidth="150"
+                prefHeight="45"/>
+
+                <Button text="✖ Batal"
+                onAction="#handleBatal"
+                styleClass="btn-danger"
+                prefWidth="150"
+                prefHeight="45"/>
+
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

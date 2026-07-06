@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.FormJadwalController"
+            stylesheets="@style.css">
+
+    <top>
+
+        <VBox alignment="CENTER"
+              spacing="15"
+              styleClass="top-panel">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="10"
+                        left="20"/>
+            </padding>
+
+            <Label text="FORM JADWAL DOKTER"
+                   styleClass="title"/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="25">
+
+            <padding>
+                <Insets top="10"
+                        right="30"
+                        bottom="20"
+                        left="30"/>
+            </padding>
+
+            <GridPane alignment="CENTER"
+                      hgap="20"
+                      vgap="18">
+
+                <columnConstraints>
+
+                    <ColumnConstraints minWidth="130"/>
+                    <ColumnConstraints minWidth="280"/>
+
+                </columnConstraints>
+
+                <!-- ID -->
+
+                <Label text="ID"/>
+
+                <TextField fx:id="txtId"
+                           editable="false"
+                           GridPane.columnIndex="1"/>
+
+                <!-- Dokter -->
+
+                <Label text="Dokter"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="cbDokter"
+                          prefWidth="250"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+                <!-- Hari -->
+
+                <Label text="Hari"
+                       GridPane.rowIndex="2"/>
+
+                <ComboBox fx:id="cbHari"
+                          prefWidth="250"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <!-- Jam Mulai -->
+
+                <Label text="Jam Mulai"
+                       GridPane.rowIndex="3"/>
+
+                <TextField fx:id="txtJamMulai"
+                           promptText="08:00:00"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <!-- Jam Selesai -->
+
+                <Label text="Jam Selesai"
+                       GridPane.rowIndex="4"/>
+
+                <TextField fx:id="txtJamSelesai"
+                           promptText="12:00:00"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="4"/>
+
+            </GridPane>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+
+                <Button text="💾 Simpan"
+                        onAction="#handleSimpan"
+                        styleClass="btn-save-modern"/>
+
+                <Button text="✖ Batal"
+                        onAction="#handleBatal"
+                        styleClass="btn-cancel-modern"/>
+
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

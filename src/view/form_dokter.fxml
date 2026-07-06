@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.FormDokterController"
+            stylesheets="@style.css">
+
+    <top>
+
+        <VBox alignment="CENTER"
+              spacing="15"
+              styleClass="top-panel">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="10"
+                        left="20"/>
+            </padding>
+
+            <Label text="FORM DATA DOKTER"
+                   styleClass="title"/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="25">
+
+            <padding>
+                <Insets top="10"
+                        right="30"
+                        bottom="20"
+                        left="30"/>
+            </padding>
+
+            <GridPane alignment="CENTER"
+                      hgap="20"
+                      vgap="18">
+
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="250"/>
+                </columnConstraints>
+
+                <Label text="ID"/>
+                <TextField fx:id="txtId"
+                           editable="false"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Nama"
+                       GridPane.rowIndex="1"/>
+
+                <TextField fx:id="txtNama"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Spesialis"
+                       GridPane.rowIndex="2"/>
+
+                <TextField fx:id="txtSpesialis"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="No HP"
+                       GridPane.rowIndex="3"/>
+
+                <TextField fx:id="txtHP"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <HBox spacing="20"
+            alignment="CENTER">
+
+            <Button text="💾 Simpan"
+            onAction="#handleSimpan"
+            styleClass="btn-save-modern"/>
+
+            <Button text="✖ Batal"
+            onAction="#handleBatal"
+            styleClass="btn-cancel-modern"/>
+
+           </HBox>
+        </VBox>
+
+    </center>
+
+</BorderPane>

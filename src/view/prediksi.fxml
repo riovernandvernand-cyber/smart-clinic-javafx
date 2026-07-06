@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.PrediksiMLController"
+            stylesheets="@style.css">
+
+    <top>
+
+        <VBox alignment="CENTER"
+              spacing="10"
+              styleClass="top-panel">
+
+            <padding>
+                <Insets top="20"
+                        right="20"
+                        bottom="15"
+                        left="20"/>
+            </padding>
+
+            <Label text="PREDIKSI RISIKO DIABETES"
+                   styleClass="title"/>
+
+            <Label text="Masukkan data medis pasien untuk memprediksi risiko diabetes."/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="25">
+
+            <padding>
+                <Insets top="25"
+                        right="40"
+                        bottom="25"
+                        left="40"/>
+            </padding>
+
+            <GridPane hgap="35"
+                      vgap="18">
+
+                <columnConstraints>
+                    <ColumnConstraints minWidth="220"/>
+                    <ColumnConstraints minWidth="180"/>
+                    <ColumnConstraints minWidth="220"/>
+                    <ColumnConstraints minWidth="180"/>
+                </columnConstraints>
+
+                <!-- kiri -->
+
+                <Label text="Kehamilan (Pregnancies)"/>
+                <TextField fx:id="txtPregnancies"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Glukosa (Glucose)"
+                       GridPane.columnIndex="2"/>
+                <TextField fx:id="txtGlucose"
+                           GridPane.columnIndex="3"/>
+
+                <Label text="Tekanan Darah (mmHg)"
+                       GridPane.rowIndex="1"/>
+                <TextField fx:id="txtBloodPressure"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Ketebalan Kulit (mm)"
+                            GridPane.columnIndex="2"
+                            GridPane.rowIndex="1"/>
+
+                <TextField fx:id="txtSkinThickness"
+                            promptText="contoh: 20"
+                            GridPane.columnIndex="3"
+                            GridPane.rowIndex="1"/>
+
+                <Label text="Insulin (mu U/ml)"
+                       GridPane.rowIndex="2"/>
+                <TextField fx:id="txtInsulin"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="BMI"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="2"/>
+                <TextField fx:id="txtBMI"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Riwayat Keluarga (DPF)"
+                       GridPane.rowIndex="3"/>
+                <TextField fx:id="txtDPF"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <Label text="Umur (Tahun)"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="3"/>
+                <TextField fx:id="txtAge"
+                           GridPane.columnIndex="3"
+                           GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <HBox spacing="20"
+                  alignment="CENTER">
+
+                <Button text="🔍 Prediksi Sekarang"
+                        onAction="#handlePrediksi"
+                        styleClass="btn-cari"/>
+
+                <Button text="🔄 Reset"
+                        onAction="#handleReset"
+                        styleClass="btn-refresh"/>
+
+                <Button text="❌ Tutup"
+                        onAction="#handleClose"
+                        styleClass="btn-close"/>
+
+            </HBox>
+
+            <Separator prefWidth="850"/>
+
+            <VBox alignment="CENTER"
+                  spacing="10">
+
+                <Label text="HASIL PREDIKSI"
+                       style="-fx-font-size:24px;-fx-font-weight:bold;"/>
+
+                <Label fx:id="lblHasil"
+                       text="-"
+                       style="-fx-font-size:28px;-fx-text-fill:green;-fx-font-weight:bold;"/>
+
+                <Label fx:id="lblProbabilitas"
+                       text="Probabilitas : -"
+                       style="-fx-font-size:18px;"/>
+
+            </VBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
